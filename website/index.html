@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esports Integrity Command Center — AI Anti-Cheat</title>
+    <meta name="description"
+        content="AI-powered anti-cheat system detecting bot behaviour in esports using Isolation Forest anomaly detection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CURSOR GLOW -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">Initializing Command Center</div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-brand">🎮 Integrity Engine</div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#behaviour">Analysis</a>
+            <a href="#scatter">Scan</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#suspects">Threats</a>
+            <a href="#risk">Risk Map</a>
+        </div>
+    </nav>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-scanline"></div>
+        <div class="parallax-orb" style="width:300px;height:300px;top:15%;left:10%;background:rgba(139,92,246,.08);"
+            data-speed="0.03"></div>
+        <div class="parallax-orb" style="width:200px;height:200px;top:60%;right:8%;background:rgba(0,245,255,.06);"
+            data-speed="0.05"></div>
+        <div class="parallax-orb" style="width:250px;height:250px;bottom:10%;left:50%;background:rgba(255,46,136,.05);"
+            data-speed="0.04"></div>
+        <div class="hero-content">
+            <div class="hero-badge">AI-Powered Anti-Cheat System</div>
+            <h1 class="hero-title">
+                <span class="grad">Esports Integrity</span><br>
+                <span class="grad">Command Center</span>
+            </h1>
+            <p class="hero-sub">Isolation Forest anomaly detection scanning 5,000 player sessions across 1,000+ players.
+                Identifying aimbots,
+                stat manipulation, and suspicious patterns in real time.</p>
+            <a href="#behaviour" class="hero-cta" id="heroCta"><span>⚡</span> Explore Detection</a>
+        </div>
+        <div class="scroll-hint" id="scrollHint">Scroll to begin<div class="chevron"></div>
+        </div>
+    </section>
+
+    <!-- ═══════ METRICS BANNER ═══════ -->
+    <section class="metrics-banner" id="metricsBanner">
+        <div class="container">
+            <div class="mbanner-grid">
+                <div class="mbanner-card" data-anim="reveal">
+                    <div class="micon">👥</div>
+                    <div class="mval v-cyan" id="metTotal">—</div>
+                    <div class="mlbl">Players Scanned</div>
+                </div>
+                <div class="mbanner-card" data-anim="reveal">
+                    <div class="micon">🚨</div>
+                    <div class="mval v-red" id="metThreats">—</div>
+                    <div class="mlbl">Threats Found</div>
+                </div>
+                <div class="mbanner-card" data-anim="reveal">
+                    <div class="micon">🛡️</div>
+                    <div class="mval v-green" id="metClean">—</div>
+                    <div class="mlbl">Clean Rate</div>
+                </div>
+                <div class="mbanner-card" data-anim="reveal">
+                    <div class="micon">⚡</div>
+                    <div class="mval v-purple" id="metIntegrity">—</div>
+                    <div class="mlbl">Avg Integrity</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ BEHAVIOUR REVEAL ═══════ -->
+    <section class="behaviour-section" id="behaviour">
+        <div class="container">
+            <div class="section-badge"><span class="live-dot"></span> Live Analysis</div>
+            <h2 class="section-title"><span class="grad">Pattern Recognition</span></h2>
+            <p class="section-sub">Our AI compares player statistics against population baselines to identify inhuman
+                performance patterns.</p>
+            <div class="stats-grid">
+                <div class="stat-card" data-anim="reveal">
+                    <div class="stat-header">
+                        <div class="stat-icon">⚔️</div>
+                        <div>
+                            <div class="stat-label">K/D Ratio</div>
+                            <div class="stat-comparison">Normal vs Suspicious</div>
+                        </div>
+                    </div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-label"><span>Normal Player</span><span class="counter"
+                                data-target="1.8">0</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill" style="background:var(--blue);color:var(--blue);"
+                                data-width="18"></div>
+                        </div>
+                    </div>
+                    <div class="stat-bar-wrap" style="margin-top:.8rem;">
+                        <div class="stat-bar-label"><span>🚨 Cheater</span><span id="liveSusKd" class="counter"
+                                data-target="25.4" style="color:var(--red);">0</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill" id="barSusKd" style="background:var(--red);color:var(--red);"
+                                data-width="95">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card" data-anim="reveal">
+                    <div class="stat-header">
+                        <div class="stat-icon">🎯</div>
+                        <div>
+                            <div class="stat-label">Aim Accuracy</div>
+                            <div class="stat-comparison">Mean accuracy comparison</div>
+                        </div>
+                    </div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-label"><span>Normal Player</span><span id="liveNormAcc" class="counter"
+                                data-target="38.5" data-suffix="%">0</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill" id="barNormAcc" style="background:var(--blue);color:var(--blue);"
+                                data-width="38"></div>
+                        </div>
+                    </div>
+                    <div class="stat-bar-wrap" style="margin-top:.8rem;">
+                        <div class="stat-bar-label"><span>🚨 Cheater</span><span id="liveSusAcc" class="counter"
+                                data-target="93.2" data-suffix="%" style="color:var(--red);">0</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill" id="barSusAcc" style="background:var(--red);color:var(--red);"
+                                data-width="93">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card" data-anim="reveal">
+                    <div class="stat-header">
+                        <div class="stat-icon">📉</div>
+                        <div>
+                            <div class="stat-label">Accuracy Variance</div>
+                            <div class="stat-comparison">Low variance = suspicious</div>
+                        </div>
+                    </div>
+                    <div class="stat-bar-wrap">
+                        <div class="stat-bar-label"><span>Normal Player</span><span class="counter"
+                                data-target="12.4">0</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill" style="background:var(--blue);color:var(--blue);"
+                                data-width="62"></div>
+                        </div>
+                    </div>
+                    <div class="stat-bar-wrap" style="margin-top:.8rem;">
+                        <div class="stat-bar-label"><span>🚨 Cheater</span><span class="counter" data-target="1.8"
+                                style="color:var(--red);">0</span></div>
+                        <div class="stat-bar">
+                            <div class="stat-bar-fill" style="background:var(--red);color:var(--red);" data-width="9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card" data-anim="reveal">
+                    <div class="stat-header">
+                        <div class="stat-icon">🧠</div>
+                        <div>
+                            <div class="stat-label">Model Performance</div>
+                            <div class="stat-comparison">Isolation Forest stats</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:1.5rem;margin-top:.5rem;flex-wrap:wrap;">
+                        <div>
+                            <div class="stat-value cyan" id="statPlayers"><span class="counter"
+                                    data-target="1065">0</span></div>
+                            <div class="stat-label" style="font-size:.65rem;">Scanned</div>
+                        </div>
+                        <div>
+                            <div class="stat-value red" id="statThreats"><span class="counter"
+                                    data-target="107">0</span>
+                            </div>
+                            <div class="stat-label" style="font-size:.65rem;">Threats</div>
+                        </div>
+                        <div>
+                            <div class="stat-value green"><span class="counter" data-target="90"
+                                    data-suffix="%">0</span></div>
+                            <div class="stat-label" style="font-size:.65rem;">Clean</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ SCATTER ZONE ═══════ -->
+    <section class="scatter-section" id="scatter">
+        <div class="container">
+            <div class="section-badge">Anomaly Scan</div>
+            <h2 class="section-title"><span class="grad">Threat Visualization</span></h2>
+            <p class="section-sub">Hover over points to inspect individual player profiles. Red = suspicious, Blue =
+                clean.</p>
+            <div class="scatter-wrap">
+                <canvas class="scatter-canvas" id="scatterCanvas"></canvas>
+                <div class="scatter-tooltip" id="scatterTooltip">
+                    <div class="tt-id" id="ttId"></div>
+                    <div class="tt-row"><span>K/D</span><b id="ttKd"></b></div>
+                    <div class="tt-row"><span>Accuracy</span><b id="ttAcc"></b></div>
+                    <div class="tt-row"><span>Integrity</span><b id="ttInt"></b></div>
+                    <div class="tt-row"><span>Status</span><b id="ttStatus"></b></div>
+                </div>
+                <div class="quadrant-label" style="bottom:8%;left:5%;">Normal</div>
+                <div class="quadrant-label" style="top:8%;right:5%;">⚠ Suspicious</div>
+                <div class="quadrant-label" style="bottom:8%;right:5%;">Skilled</div>
+                <div class="quadrant-label" style="top:8%;left:5%;">Extreme Anomaly</div>
+                <div class="scatter-legend">
+                    <span><span class="legend-dot clean"></span> Clean</span>
+                    <span><span class="legend-dot sus"></span> Suspicious</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ LEADERBOARD ═══════ -->
+    <section class="leaderboard-section" id="leaderboard">
+        <div class="container">
+            <div class="section-badge">Integrity Ranking</div>
+            <h2 class="section-title"><span class="grad">Player Leaderboard</span></h2>
+            <p class="section-sub">All players ranked by integrity score. Higher = cleaner gameplay.</p>
+            <div class="table-wrap">
+                <table class="lb-table" id="lbTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Player</th>
+                            <th>Integrity</th>
+                            <th>Anomaly</th>
+                            <th>K/D</th>
+                            <th>Accuracy</th>
+                            <th>Sessions</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lbBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ SUSPICIOUS PLAYERS ═══════ -->
+    <section class="suspects-section" id="suspects">
+        <div class="container">
+            <div class="section-badge">Threat Intelligence</div>
+            <h2 class="section-title"><span class="grad">Flagged Players</span></h2>
+            <p class="section-sub">Suspicious players with risk classification. Filter by threat level.</p>
+            <div class="filter-bar">
+                <select id="riskFilter" class="risk-select">
+                    <option value="all">All Threats</option>
+                    <option value="high">🔴 High Risk</option>
+                    <option value="mid">🟠 Medium Risk</option>
+                    <option value="low">🟢 Low Risk</option>
+                </select>
+                <span class="filter-count" id="filterCount">— players</span>
+            </div>
+            <div class="suspects-grid" id="suspectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ═══════ RISK LEVELS ═══════ -->
+    <section class="risk-section" id="risk">
+        <div class="container">
+            <div class="section-badge">Threat Classification</div>
+            <h2 class="section-title"><span class="grad">Risk Assessment</span></h2>
+            <p class="section-sub">Players classified into integrity tiers based on anomaly profiles.</p>
+            <div class="risk-grid" id="riskGrid"></div>
+        </div>
+    </section>
+
+    <!-- ═══════ CTA ═══════ -->
+    <section class="cta-section" id="cta">
+        <div class="cta-bg"></div>
+        <div class="container" style="position:relative;z-index:2;">
+            <h2 class="cta-title">
+                <span class="line"><span class="grad">Protect The Game</span></span>
+                <span class="line"><span class="grad">Detect The Unfair</span></span>
+            </h2>
+            <p class="cta-sub">Real-time AI surveillance ensuring competitive integrity across every match, every
+                player, every session.</p>
+            <a href="#hero" class="cta-btn" id="ctaBtn"><span>🚀</span> Back to Top</a>
+        </div>
+    </section>
+
+    <footer class="site-footer">Esports Integrity Command Center · Isolation Forest Engine · AI Anti-Cheat</footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

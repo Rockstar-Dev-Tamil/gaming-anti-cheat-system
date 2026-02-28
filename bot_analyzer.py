@@ -38,13 +38,13 @@ def generate_dataset(n: int = 1000, cheater_ratio: float = 0.08, seed: int = 42)
     n_legit = n - n_cheaters
 
     # --- Legitimate players ---------------------------------------------------
-    legit_player_ids = [f"P{str(i).zfill(4)}" for i in rng.choice(range(1, 501), size=n_legit)]
+    legit_player_ids = [f"P{str(i).zfill(4)}" for i in rng.choice(range(1, 1001), size=n_legit)]
     legit_kills = rng.integers(0, 25, size=n_legit)
     legit_deaths = rng.integers(1, 20, size=n_legit)
     legit_accuracy = rng.uniform(15.0, 65.0, size=n_legit).round(2)
 
     # --- Cheating players (distinctive patterns) ------------------------------
-    cheater_pool = [f"P{str(i).zfill(4)}" for i in range(901, 921)]  # 20 unique cheater IDs
+    cheater_pool = [f"P{str(i).zfill(4)}" for i in range(1001, 1081)]  # 80 unique cheater IDs
     cheater_player_ids = rng.choice(cheater_pool, size=n_cheaters)
     cheater_kills = rng.integers(25, 51, size=n_cheaters)            # very high kills
     cheater_deaths = rng.integers(0, 4, size=n_cheaters)             # very low deaths
